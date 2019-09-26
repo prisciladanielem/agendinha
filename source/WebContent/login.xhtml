@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:messages id="messages" />
+		<p:panelGrid columns="2">
+			<p:outputLabel for="nome" value="Nome 
+      Usuário:" />
+			<p:inputText id="nome" value="#{UsuarioMB.usuario.nome}" />
+
+			<p:outputLabel for="senha" value="Senha:" />
+			<p:password id="senha" value="#{UsuarioMB.usuario.senha}" />
+
+			<p:commandButton value="Logar" icon="ui-icon-check"
+				action="#{UsuarioMB.envia}" ajax="false">
+			</p:commandButton>
+
+			<p:commandButton value="Cadastrar Usuario" icon="ui-icon-star"
+				onclick="PF('dlg').show();" type="button">
+			</p:commandButton>
+
+		</p:panelGrid>
+
+		<p:dialog header="Cadastro de Usuario" widgetVar="dlg" dynamic="true">
+
+			<h3>Usuario</h3>
+			<p:inputText id="usuarioCadastro" value="#{UsuarioMB.usuario.nome}"
+				placeholder="Usuario" />
+
+			<h3>Senha</h3>
+			<p:password id="senhaCadastro" value="#{UsuarioMB.usuario.senha}"
+				placeholder="Senha" />
+
+			<h3>CPF</h3>
+			<p:inputText id="cpfCadastro" value="#{UsuarioMB.usuario.cpf}"
+				placeholder="Usuario" />
+
+			<div>
+				<p:commandButton value="Salvar" icon="ui-icon-check"
+					action="#{UsuarioMB.cadastrarUsuario}" ajax="false">
+				</p:commandButton>
+			</div>
+
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>
