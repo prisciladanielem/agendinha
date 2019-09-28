@@ -7,40 +7,39 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import model.Consulta;
+import model.Horario;
 
-public class ConsultaDAO {
+public class HorarioDAO {
 	EntityManagerFactory emf;
 	EntityManager em;
 
-	public ConsultaDAO() {
+	public HorarioDAO() {
 		emf = Persistence.createEntityManagerFactory("conexao");
 		em = emf.createEntityManager();
 
 	}
 
-	public void salvar(Consulta consulta) {
+	public void salvar(Horario horario) {
 		em.getTransaction().begin();
-		em.merge(consulta);
+		em.merge(horario);
 		em.getTransaction().commit();
 		emf.close();
 
 	}
 
-	public void excluir(Consulta consulta) {
+	public void excluir(Horario horario) {
 		em.getTransaction().begin();
-		em.remove(consulta);
+		em.remove(horario);
 		em.getTransaction().commit();
 		emf.close();
 	}
 	@SuppressWarnings("unchecked")
-	public List<Consulta> listarTodos() {
+	public List<Horario> listarTodos() {
 		em.getTransaction().begin();
 		Query consultaBanco = em.createQuery("select consulta from Consulta consulta");
-		List<Consulta> consulta = consultaBanco.getResultList();
+		List<Horario> horario = consultaBanco.getResultList();
 		em.getTransaction().commit();
 		emf.close();
-		return consulta;
+		return horario;
 	}
-
 }

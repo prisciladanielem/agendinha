@@ -11,7 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Consulta {
+public class Horario {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

@@ -6,26 +6,26 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
-import dao.ConsultaDAO;
-import model.Consulta;
+import dao.HorarioDAO;
+import model.Horario;
 
 @ManagedBean
-public class ConsultaMB {
-	private Consulta consulta;
-	private ConsultaDAO consultaDAO;
-	private List<Consulta> Lista;	
+public class HorarioMB {
+	private Horario horario;
+	private HorarioDAO horarioDAO;
+	private List<Horario> Lista;	
 	
-	public ConsultaMB() {
-		consultaDAO = new ConsultaDAO();
-		consulta = new Consulta();
+	public HorarioMB() {
+		horarioDAO = new HorarioDAO();
+		horario = new Horario();
 		
-		Lista = consultaDAO.listarTodos();				
+		Lista = horarioDAO.listarTodos();				
 	}
 	
 	public void salvar() {
-		consultaDAO.salvar(consulta);
-		consulta = new Consulta();
-		Lista = consultaDAO.listarTodos();
+		horarioDAO.salvar(horario);
+		horario = new Horario();
+		Lista = horarioDAO.listarTodos();
 
 		addMessage("consulta salvo com sucesso!!");
 		
@@ -36,20 +36,20 @@ public class ConsultaMB {
 	        FacesContext.getCurrentInstance().addMessage(null, message);
 	}
 	
-	public Consulta getconsulta(){
-		return this.consulta;
-	}
-	
-	public void setconsulta(Consulta consulta){
-		this.consulta = consulta;
-	}
-	
-	public List<Consulta> getList() {
+	public List<Horario> getList() {
 		return this.Lista;
 	}
 	
 	public void retornaLista() {
 		Lista = getList();
+	}
+
+	public Horario getHorario() {
+		return horario;
+	}
+
+	public void setHorario(Horario horario) {
+		this.horario = horario;
 	}
 	
 }	
