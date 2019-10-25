@@ -6,7 +6,7 @@ import org.junit.Test;
 import dao.HorarioDAO;
 import model.Horario;
 
-public class TesteConsulta {
+public class TesteHorario {
 	private HorarioDAO pessoaDAO;
 	private Horario pessoa;
 

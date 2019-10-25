@@ -14,24 +14,39 @@
 
 <h:body>
 	<h:form>
-	
-	<!-- Form de Cadastro -->
-		<h:panelGrid id="panelgrid" columns="2" cellpadding="5">
-			<p:outputLabel value="Nome:" for="acNome" />
-			<p:autoComplete id="acNome" value="#{consultaMB.consulta.nome}" />
-			<p:outputLabel value="E-Mail:" for="acEmail" />
-			<p:autoComplete id="acEmail" value="#{consultaMB.consulta.email}" />
-			<p:outputLabel value="Telefone:" for="acTelefone" />
-			<p:autoComplete id="acTelefone" value="#{consultaMB.consulta.telefone}" />
-			<p:outputLabel for="datetime" value="Data:" />
-       		<p:calendar id="datetime" value="#{consultaMB.consulta.data_consulta}" pattern="MM/dd/yyyy HH:mm:ss" />
- 			<p:growl id="messages" /> 
-			<p:splitButton value="salvar" action="#{consultaMB.salvar}"
-				type="button" update="panelgrid" icon="ui-icon-disk">
-			</p:splitButton>
 
+		<!-- Form de Cadastro -->
+		<h:panelGrid id="panelgrid">
+			<p:outputLabel value="Nome:" for="acNome" />
+			<p:autoComplete id="acNome" value="#{horarioMB.horario.nome}" />
+			<p:outputLabel value="E-Mail:" for="acEmail" />
+			<p:autoComplete id="acEmail" value="#{horarioMB.horario.email}" />
+			<p:outputLabel value="Telefone:" for="acTelefone" />
+			<p:autoComplete id="acTelefone" value="#{horarioMB.horario.telefone}" />
+			<p:outputLabel for="datetime" value="Data:" />
+			<p:calendar id="datetime" value="#{horarioMB.horario.data_consulta}"
+				pattern="dd/MM/yyyy">
+				<p:ajax event="dateSelect"
+					listener="#{horarioMB.buscarHoraPelaData(horarioMB.horario.data_consulta)}"
+					update="car" process="@this" />
+			</p:calendar>
+			<p:growl id="messages" />
+			<p:commandButton value="salvar" action="#{horarioMB.salvar}"
+				type="button" update="panelgrid" icon="ui-icon-disk">
+			</p:commandButton>
+
+			<p:selectOneMenu id="car" value="#{horarioMB.horario.data_consulta}">
+				<f:selectItems value="#{horarioMB.listHora}" />
+			</p:selectOneMenu>
+
+			<p:commandButton value="Cadastrar Horario"
+				onclick="PF('dlgC').show();" type="button">
+			</p:commandButton>
+		</h:panelGrid>
+
+		<h:panelGrid id="panelgridDT" columns="2" cellpadding="5">
 			<!-- Grid de Consulta -->
-			<p:dataTable var="c" value="#{consultaMB.list}">
+			<p:dataTable var="c" value="#{horarioMB.list}">
 				<p:column headerText="Id">
 					<h:outputText value="#{c.id}" />
 				</p:column>
@@ -49,8 +64,31 @@
 				</p:column>
 			</p:dataTable>
 		</h:panelGrid>
+
+		<h:panelGrid id="panelgrid2" columns="2" cellpadding="5">
+			<p:dialog header="Cadastro Data e Hora" widgetVar="dlgC"
+				dynamic="true">
+
+				<h3>Data</h3>
+				<p:outputLabel for="inline" />
+				<p:calendar id="inline" value="#{horarioMB.horarioCliente.data}"
+					mode="inline" pattern="dd/MM/yyyy" />
+
+				<h3>Hora</h3>
+				<p:outputLabel for="hora" />
+				<p:inputMask id="hora" value="#{horarioMB.horarioCliente.hora}"
+					mask="99:99" />
+				<div>
+					<h3></h3>
+					<p:commandButton value="Salvar" icon="ui-icon-check"
+						action="#{horarioMB.salvaDataHorar}" ajax="false">
+					</p:commandButton>
+				</div>
+
+			</p:dialog>
+		</h:panelGrid>
 	</h:form>
-	
+
 </h:body>
 
 </html>

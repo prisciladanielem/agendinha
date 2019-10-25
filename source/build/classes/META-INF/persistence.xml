@@ -15,7 +15,6 @@
 			<property name="hibernate.connection.url" value="jdbc:mysql://LocalHost:3306/java-jsf-primefaces-basico" />
 			<property name="hibernate.connection.user" value="root" />
 			<property name="hibernate.connection.password" value="root" />
-			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 
 			<!--Configuracoes de Debug -->
