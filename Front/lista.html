@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Agendinha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body id="interna">
+    <header>
+        <h1>Agendinha</h1>
+    </header>
+
+    <section class="table-sec">
+        <div class="table-container">           
+            <p>Horários Agendados</p>
+
+            <button id="btn-agendar" class="btn-2">Novo</button>
+            <table class="table" border="1">
+                <thead>
+                <tr>
+                    <th id="table-title">ID</th>
+                    <th id="table-title">Cliente</th>
+                    <th id="table-title">E-mail</th>
+                    <th id="table-title">Telefone</th>
+                    <th id="table-title">Data da Consulta</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                <tr>
+                    <td>001</td>
+                    <td>João Victor Dutra</td>
+                    <td>joaozinhosk8vidaloka@hotmail.com</td>
+                    <td>31 98765-4321</td>
+                    <td>2019-11-12 15:30:00</td>
+                </tr>
+                </tbody>
+                </table>
+        
+                <h1 class="cadastro"><a href="index.html">Voltar!</a></h1>
+        </div>
+
+    </section>
+
+
+    <footer class="footer">
+        <p>&copy; Agendinha</p>
+    </footer>
+
+    <div id="modal" class="modal-container">
+        <div class="modal">
+            <button class="close">x</button>
+                <p>Agendamento</p>
+                
+                <input id="name" class="input" type="date" pattern=".+" required />
+                <label class="label" for="name">Data</label>    
+
+                <input id="name" class="input" type="time" pattern=".+" required />
+                <label class="label" for="name">Hora</label> 
+
+                <br>
+
+            <button class="btn">Agendar</button>
+        </div>
+    </div>
+
+<script>
+    function startModal(modalID){
+        const modal = document.getElementById(modalID);
+        if(modal){
+            modal.classList.add('mostrar');
+            modal.addEventListener('click', (e)=> {
+                if(e.target.id == modalID ||e.target.className == 'close'){
+                    modal.classList.remove('mostrar');
+                }
+            })
+        }
+    }
+
+    const btnAgendar = document.querySelector('#btn-agendar');
+    btnAgendar.addEventListener('click', ()=> startModal('modal'));
+
+
+</script>
+</body>
+</html>
