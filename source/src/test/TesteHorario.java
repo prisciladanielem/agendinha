@@ -7,23 +7,22 @@ import dao.HorarioDAO;
 import model.Horario;
 
 public class TesteHorario {
-	private HorarioDAO pessoaDAO;
-	private Horario pessoa;
+	private HorarioDAO horarioDAO;
+	private Horario horario;
 
 	@Test
 	public void testSalvar() {
-		pessoa = new Horario();
+		horario = new Horario();
 
-		pessoa.setId(1);
-		pessoa.setNome("Teste Inserção Cliente");
-		pessoa.setEmail("pessoa@teste.com");
-		pessoa.setTelefone("4599991231");
+		horario.setId(1);
+		horario.setNome("Teste Inserção Cliente");
+		horario.setEmail("pessoa@teste.com");
+		horario.setTelefone("4599991231");
 
-		pessoaDAO = new HorarioDAO();
-		pessoaDAO.salvar(pessoa);
+		horarioDAO = new HorarioDAO();
+		horarioDAO.salvar(horario);
 
-		assertTrue(pessoaDAO.listarTodos().size() > 0);
+		assertTrue(horarioDAO.listarTodos().size() > 0);
 
 	}
-
 }
